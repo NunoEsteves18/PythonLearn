@@ -1,82 +1,82 @@
-# Começamos com uma lista de dicionários.
-# Cada dicionário representa um piloto e suas informações.
-pilotos_f1 = [
-    {"nome": "Max Verstappen", "equipe": "Red Bull Racing", "numero": 1},
-    {"nome": "Lewis Hamilton", "equipe": "Mercedes", "numero": 44},
-    {"nome": "Charles Leclerc", "equipe": "Ferrari", "numero": 16},
-    {"nome": "Fernando Alonso", "equipe": "Aston Martin", "numero": 14}
+# We start with a list of dictionaries.
+# Each dictionary represents a driver and their information.
+f1_drivers = [
+    {"name": "Max Verstappen", "team": "Red Bull Racing", "number": 1},
+    {"name": "Lewis Hamilton", "team": "Mercedes", "number": 44},
+    {"name": "Charles Leclerc", "team": "Ferrari", "number": 16},
+    {"name": "Fernando Alonso", "team": "Aston Martin", "number": 14}
 ]
 
-def mostrar_pilotos():
-    """Mostra todos os pilotos na lista."""
-    if not pilotos_f1:
-        print("Nenhum piloto cadastrado ainda.")
+def show_drivers():
+    """Displays all drivers in the list."""
+    if not f1_drivers:
+        print("No drivers registered yet.")
         return
 
-    print("\n--- Pilotos Atuais da F1 ---")
-    for piloto in pilotos_f1:
-        print(f"Nome: {piloto['nome']}, Equipe: {piloto['equipe']}, Número: {piloto['numero']}")
+    print("\n--- Current F1 Drivers ---")
+    for driver in f1_drivers:
+        print(f"Name: {driver['name']}, Team: {driver['team']}, Number: {driver['number']}")
     print("----------------------------\n")
 
-def adicionar_piloto():
-    """Adiciona um novo piloto à lista."""
-    print("\n--- Adicionar Novo Piloto ---")
-    nome = input("Digite o nome do piloto: ")
-    equipe = input(f"Digite a equipe de {nome}: ")
-    # Usamos um loop para garantir que o número seja um inteiro válido
+def add_driver():
+    """Adds a new driver to the list."""
+    print("\n--- Add New Driver ---")
+    name = input("Enter the driver's name: ")
+    team = input(f"Enter {name}'s team: ")
+    # We use a loop to ensure the number is a valid integer
     while True:
         try:
-            numero = int(input(f"Digite o número do carro de {nome}: "))
-            break # Sai do loop se o número for válido
+            number = int(input(f"Enter {name}'s car number: "))
+            break # Exits the loop if the number is valid
         except ValueError:
-            print("Entrada inválida. Por favor, digite um número inteiro para o número do carro.")
+            print("Invalid input. Please enter an integer for the car number.")
 
-    novo_piloto = {"nome": nome, "equipe": equipe, "numero": numero}
-    pilotos_f1.append(novo_piloto)
-    print(f"Piloto '{nome}' adicionado com sucesso!\n")
+    new_driver = {"name": name, "team": team, "number": number}
+    f1_drivers.append(new_driver)
+    print(f"Driver '{name}' added successfully!\n")
 
-def buscar_piloto():
-    """Busca um piloto pelo nome."""
-    print("\n--- Buscar Piloto ---")
-    nome_busca = input("Digite o nome do piloto que deseja buscar: ").strip().lower() # .strip() remove espaços extras e .lower() converte para minúsculas
+def search_driver():
+    """Searches for a driver by name."""
+    print("\n--- Search Driver ---")
+    search_name = input("Enter the name of the driver you want to search for: ").strip().lower() # .strip() removes extra spaces and .lower() converts to lowercase
 
-    encontrado = False
-    for piloto in pilotos_f1:
-        if piloto['nome'].lower() == nome_busca: # Compara em minúsculas para uma busca mais flexível
-            print(f"\nPiloto Encontrado:")
-            print(f"Nome: {piloto['nome']}, Equipe: {piloto['equipe']}, Número: {piloto['numero']}")
-            encontrado = True
-            break # Para a busca assim que encontrar o piloto
+    found = False
+    for driver in f1_drivers:
+        if driver['name'].lower() == search_name: # Compares in lowercase for more flexible searching
+            print(f"\nDriver Found:")
+            print(f"Name: {driver['name']}, Team: {driver['team']}, Number: {driver['number']}")
+            found = True
+            break # Stops the search as soon as the driver is found
     
-    if not encontrado:
-        print(f"Piloto '{nome_busca}' não encontrado.")
+    if not found:
+        print(f"Driver '{search_name}' not found.")
     print("-----------------------\n")
 
 
-def menu_principal():
-    """Mostra o menu principal do programa e gerencia as opções."""
+def main_menu():
+    """Displays the main program menu and manages options."""
     while True:
-        print("--- Menu F1 ---")
-        print("1. Ver todos os pilotos")
-        print("2. Adicionar novo piloto")
-        print("3. Buscar piloto por nome")
-        print("4. Sair")
+        print("--- F1 Menu ---")
+        print("1. View all drivers")
+        print("2. Add new driver")
+        print("3. Search driver by name")
+        print("4. Exit")
         print("---------------")
 
-        opcao = input("Escolha uma opção: ")
+        option = input("Choose an option: ")
 
-        if opcao == '1':
-            mostrar_pilotos()
-        elif opcao == '2':
-            adicionar_piloto()
-        elif opcao == '3':
-            buscar_piloto()
-        elif opcao == '4':
-            print("Saindo do programa F1. Até mais!")
-            break # Sai do loop e encerra o programa
+        if option == '1':
+            show_drivers()
+        elif option == '2':
+            add_driver()
+        elif option == '3':
+            search_driver()
+        elif option == '4':
+            print("Exiting the F1 program. See you!")
+            break # Exits the loop and ends the program
         else:
-            print("Opção inválida. Por favor, tente novamente.")
+            print("Invalid option. Please try again.")
 
-# Chamada da função principal para iniciar o programa
+# Call the main function to start the program
 if __name__ == "__main__":
-    menu_principal()
+    main_menu()
